@@ -35,6 +35,7 @@
                             <form>
                                 <field
                                     name="publication_id"
+                                    domain="[('active','=',True),]"
                                     options="{'create': false, 'create_edit': false}"
                                 />
                                 <field name="date_start" />
@@ -49,7 +50,11 @@
                                 />
                                 <field
                                     name="product_id"
-                                    domain="[('publication_id','=',publication_id),]"
+                                    domain="[
+                                        ('publication_id','=',publication_id),
+                                        ('email_distribution','=',email_distribution),
+                                        ('print_distribution','=',print_distribution),
+                                    ]"
                                     options="{'create': false, 'create_edit': false}"
                                 />
                             </form>

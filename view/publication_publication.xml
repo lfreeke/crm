@@ -1,0 +1,51 @@
+<openerp>
+    <data>
+
+        <record
+            id="publication_publication_form"
+            model="ir.ui.view">
+            <field name="name">publication.publication.form</field>
+            <field name="model">publication.publication</field>
+            <field name="type">form</field>
+            <field
+                name="arch"
+                type="xml">
+                <form string="Publication">
+                    <group
+                        colspan="4" col="2"
+                    >
+                        <field name="code" />
+                        <field name="name" />
+                        <field name="date_start" />
+                        <field name="date_end" />
+                        <field name="email_distribution" />
+                        <field name="print_distribution" />
+                        <field name="active" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record
+            id="publication_publication_tree"
+            model="ir.ui.view">
+            <field name="name">publication.publication.tree</field>
+            <field name="model">publication.publication</field>
+            <field name="type">tree</field>
+            <field
+                name="arch"
+                type="xml">
+                <tree string="Publication">
+                    <field name="code" />
+                    <field name="name" />
+                    <field name="date_start" />
+                    <field name="date_end" />
+                    <field name="email_distribution" />
+                    <field name="print_distribution" />
+                        <field name="active" />
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</openerp>
