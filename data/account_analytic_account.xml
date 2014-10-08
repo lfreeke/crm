@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Add default analytic account, required for contracts that will
+             be generated for subscriptions -->
+        <record
+            id="publication_root_analytic_account"
+            model="account.analytic.account"
+        >
+            <field name="code">PUB</field>
+            <field name="name">Publications</field>
+            <field name="description">Root analytic account for publications</field>
+            <field name="type">normal</field>
+        </record>
+
+    </data>
+</openerp>

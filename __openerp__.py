@@ -42,6 +42,7 @@ Paid publications can be linked to a contract (recurring analytic account).
         'web_m2x_options',
     ],
     "data": [
+        'data/account_analytic_account.xml',
         'view/publication_publication.xml',
         'view/product_product.xml',
         'view/res_partner.xml',
