@@ -181,7 +181,7 @@ class Subscription(orm.Model):
             'product.product',
             'Product',
         ),
-        # Conntract should really be one2one, if that were still existing
+        # Contract_id should really be one2one, if that were still existing
         'contract_id': fields.many2one(
             'account.analytic.account',
             'Contract',
