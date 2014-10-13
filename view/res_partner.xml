@@ -37,26 +37,32 @@
                                     name="publication_id"
                                     domain="[('active','=',True),]"
                                     options="{'create': false, 'create_edit': false}"
+                                    on_change="on_change_publication_id(publication_id, parent.distribution_preference)"
                                 />
-                                <field name="date_start" />
-                                <field name="date_end" />
-                                <field name="email_distribution" />
-                                <field name="print_distribution" />
-                                <field
-                                    name="copies"
-                                    attrs="{
-                                        'invisible': [('print_distribution','=',False)]
-                                    }"
-                                />
-                                <field
-                                    name="product_id"
-                                    domain="[
-                                        ('publication_id','=',publication_id),
-                                        ('email_distribution','=',email_distribution),
-                                        ('print_distribution','=',print_distribution),
-                                    ]"
-                                    options="{'create': false, 'create_edit': false}"
-                                />
+                                <group 
+                                    colspan="4" col="2"
+                                    attrs="{'invisible': [('publication_id','=',False),]}"
+                                >
+                                    <field name="date_start" />
+                                    <field name="date_end" />
+                                    <field name="email_distribution" />
+                                    <field name="print_distribution" />
+                                    <field
+                                        name="copies"
+                                        attrs="{
+                                            'invisible': [('print_distribution','=',False)]
+                                        }"
+                                    />
+                                    <field
+                                        name="product_id"
+                                        domain="[
+                                            ('publication_id','=',publication_id),
+                                            ('email_distribution','=',email_distribution),
+                                            ('print_distribution','=',print_distribution),
+                                        ]"
+                                        options="{'create': false, 'create_edit': false}"
+                                    />
+                                </group>
                             </form>
                         </field>
                     </page>

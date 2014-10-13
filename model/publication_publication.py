@@ -77,7 +77,7 @@ class Publication(orm.Model):
     _constraints = [
         (_check_dates, '', ['date_start', 'date_end']),
         (_check_distributions, '',
-            ['emial_distribution', 'print_distribution']),
+            ['email_distribution', 'print_distribution']),
     ]
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

@@ -20,11 +20,48 @@
 #
 ##############################################################################
 from openerp.osv import orm, fields
+from openerp.tools.translate import _
 
 
 class Subscription(orm.Model):
     '''Link partners to publications'''
     _name = 'publication.subscription'
+
+    def on_change_publication_id(
+            self, cr, uid, dummy_ids, publication_id, distribution_preference,
+            context=None):
+        '''Selecting a publication will determine whether print of email
+        distribution is valid. If a publication is changed  fields for
+        distribution will be set to sensible defaults for the publication'''
+        if not publication_id:
+            return {}  # do nothing
+        publication_model = self.pool['publication.publication']
+        # if only print or email allowed, deselect the not allowed
+        # distribution methods, and select the one allowed.
+        publication_records = publication_model.read(
+            cr, uid, [publication_id],
+            ['email_distribution', 'print_distribution'], context=context
+        )
+        assert publication_records, (
+            _('No record for publication_id %d') % publication_id)
+        result = {
+            'value': {
+                'email_distribution':
+                    publication_records[0]['email_distribution'],
+                'print_distribution':
+                    publication_records[0]['print_distribution'],
+            },
+        }
+        # if multiple modes of distribution are allowed, fill method according
+        # to partner preferences.
+        if (result['value']['email_distribution']
+                and result['value']['email_distribution']):
+            if distribution_preference == 'print':
+                result['value']['email_distribution'] = False
+            if distribution_preference == 'email':
+                result['value']['print_distribution'] = False
+                result['value']['copies'] = 1
+        return result
 
     def get_root_analytic_account_id(self, cr, uid):
         '''Return id of standard analytic account to use as parent in
@@ -191,5 +228,59 @@ class Subscription(orm.Model):
         'copies': 1,
     }
     _order = 'date_start desc'
+
+    def _check_dates(self, cr, uid, ids, context=None):
+        for this_obj in self.browse(cr, uid, ids, context=context):
+            date_start = this_obj.date_start
+            date_end = this_obj.date_end
+            publication_start = this_obj.publication_id.date_start
+            publication_end = this_obj.publication_id.date_end
+            if date_end and date_start and (date_end < date_start):
+                raise orm.except_orm(
+                    _('End date before start date'),
+                    _("The subscriptions's end date needs to be after the "
+                      "subscriptions's start date"))
+            if (date_start and publication_start
+                    and date_start < publication_start):
+                raise orm.except_orm(
+                    _('Subscription can not start before publication'),
+                    _("The subscriptions start date needs to be equal or"
+                      " after the publication's start date"))
+            if (date_end and publication_end
+                    and date_end > publication_end):
+                raise orm.except_orm(
+                    _('Subscription can not end after publication'),
+                    _("The subscriptions end date needs to be equal or"
+                      " before the publication's end date"))
+        return True
+
+    def _check_distributions(self, cr, uid, ids, context=None):
+        for this_obj in self.browse(cr, uid, ids, context=context):
+            if not (this_obj.email_distribution
+                        or this_obj.print_distribution):
+                raise orm.except_orm(
+                    _('Select at least one type of distribution'),
+                    _('Select either email, or print or both distribution'
+                        ' methods')
+                )
+            if (this_obj.email_distribution
+                 and not this_obj.publication_id.email_distribution):
+                raise orm.except_orm(
+                    _('No email distribution for this publication'),
+                    _('Email distribution for this publication not allowed')
+                )
+            if (this_obj.print_distribution
+                 and not this_obj.publication_id.print_distribution):
+                raise orm.except_orm(
+                    _('No print distribution for this publication'),
+                    _('Print distribution for this publication not allowed')
+                )
+        return True
+
+    _constraints = [
+        (_check_dates, '', ['date_start', 'date_end']),
+        (_check_distributions, '',
+            ['email_distribution', 'print_distribution']),
+    ]
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
