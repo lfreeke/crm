@@ -3,6 +3,22 @@
     <data>
 
         <record
+            id="action_subscription"
+            model="ir.actions.act_window"
+        >
+            <field name="view_mode">tree,form</field>
+            <field name="res_model">publication.subscription</field>
+        </record>
+
+        <menuitem
+            id="menu_subscription"
+            action="action_subscription"
+            name="Subscriptions"
+            parent="base.menu_sales"
+            sequence="90"
+        />
+
+        <record
             id="action_publication"
             model="ir.actions.act_window"
         >

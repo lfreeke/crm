@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-13 10:26+0000\n"
-"PO-Revision-Date: 2014-10-13 10:26+0000\n"
+"POT-Creation-Date: 2015-02-09 11:46+0000\n"
+"PO-Revision-Date: 2015-02-09 11:46+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,7 @@ msgstr ""
 
 #. module: publication
 #: field:publication.publication,active:0
+#: field:publication.subscription,name:0
 msgid "Active"
 msgstr "Active"
 
@@ -75,14 +76,14 @@ msgid "Email"
 msgstr "Email"
 
 #. module: publication
-#: code:addons/publication/model/publication_subscription.py:270
+#: code:addons/publication/model/publication_subscription.py:306
 #, python-format
 msgid "Email distribution for this publication not allowed"
 msgstr "Email distribution for this publication not allowed"
 
 #. module: publication
 #: code:addons/publication/model/publication_publication.py:61
-#: code:addons/publication/model/publication_subscription.py:240
+#: code:addons/publication/model/publication_subscription.py:276
 #, python-format
 msgid "End date before start date"
 msgstr "End date before start date"
@@ -103,13 +104,13 @@ msgid "Name"
 msgstr "Name"
 
 #. module: publication
-#: code:addons/publication/model/publication_subscription.py:269
+#: code:addons/publication/model/publication_subscription.py:305
 #, python-format
 msgid "No email distribution for this publication"
 msgstr "No email distribution for this publication"
 
 #. module: publication
-#: code:addons/publication/model/publication_subscription.py:275
+#: code:addons/publication/model/publication_subscription.py:311
 #, python-format
 msgid "No print distribution for this publication"
 msgstr "No print distribution for this publication"
@@ -142,7 +143,7 @@ msgid "Print & Email"
 msgstr "Print & Email"
 
 #. module: publication
-#: code:addons/publication/model/publication_subscription.py:276
+#: code:addons/publication/model/publication_subscription.py:312
 #, python-format
 msgid "Print distribution for this publication not allowed"
 msgstr "Print distribution for this publication not allowed"
@@ -202,31 +203,38 @@ msgstr "Repeat every (Days/Week/Month/Year)"
 
 #. module: publication
 #: code:addons/publication/model/publication_publication.py:71
-#: code:addons/publication/model/publication_subscription.py:262
+#: code:addons/publication/model/publication_subscription.py:298
 #, python-format
 msgid "Select at least one type of distribution"
 msgstr "Select at least one type of distribution"
 
 #. module: publication
 #: code:addons/publication/model/publication_publication.py:72
-#: code:addons/publication/model/publication_subscription.py:263
+#: code:addons/publication/model/publication_subscription.py:299
 #, python-format
 msgid "Select either email, or print or both distribution methods"
 msgstr "Select either email, or print or both distribution methods"
 
 #. module: publication
-#: code:addons/publication/model/publication_subscription.py:252
+#: view:publication.subscription:0
+msgid "Subscription"
+msgstr "Subscription"
+
+#. module: publication
+#: code:addons/publication/model/publication_subscription.py:288
 #, python-format
 msgid "Subscription can not end after publication"
 msgstr "Subscription can not end after publication"
 
 #. module: publication
-#: code:addons/publication/model/publication_subscription.py:246
+#: code:addons/publication/model/publication_subscription.py:282
 #, python-format
 msgid "Subscription can not start before publication"
 msgstr "Subscription can not start before publication"
 
 #. module: publication
+#: model:ir.ui.menu,name:publication.menu_subscription
+#: view:publication.subscription:0
 #: view:res.partner:0
 #: field:res.partner,subscription_ids:0
 msgid "Subscriptions"
@@ -239,19 +247,19 @@ msgid "The publication's end date needs to be after the publication's start date
 msgstr "The publication's end date needs to be after the publication's start date"
 
 #. module: publication
-#: code:addons/publication/model/publication_subscription.py:253
+#: code:addons/publication/model/publication_subscription.py:289
 #, python-format
 msgid "The subscriptions end date needs to be equal or before the publication's end date"
 msgstr "The subscriptions end date needs to be equal or before the publication's end date"
 
 #. module: publication
-#: code:addons/publication/model/publication_subscription.py:247
+#: code:addons/publication/model/publication_subscription.py:283
 #, python-format
 msgid "The subscriptions start date needs to be equal or after the publication's start date"
 msgstr "The subscriptions start date needs to be equal or after the publication's start date"
 
 #. module: publication
-#: code:addons/publication/model/publication_subscription.py:241
+#: code:addons/publication/model/publication_subscription.py:277
 #, python-format
 msgid "The subscriptions's end date needs to be after the subscriptions's start date"
 msgstr "The subscriptions's end date needs to be after the subscriptions's start date"
@@ -265,11 +273,6 @@ msgstr "Week(s)"
 #: selection:product.product,recurring_rule_type:0
 msgid "Year(s)"
 msgstr "Year(s)"
-
-#. module: publication
-#: model:ir.model,name:publication.model_publication_partner
-msgid "publication.partner"
-msgstr "publication.partner"
 
 #. module: publication
 #: model:ir.model,name:publication.model_publication_publication

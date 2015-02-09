@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*-
-'''Define publication.subscription model'''
+"""Define publication.subscription model."""
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -24,15 +24,15 @@ from openerp.tools.translate import _
 
 
 class Subscription(orm.Model):
-    '''Link partners to publications'''
+    """Link partners to publications."""
     _name = 'publication.subscription'
 
     def on_change_publication_id(
             self, cr, uid, dummy_ids, publication_id, distribution_preference,
             context=None):
-        '''Selecting a publication will determine whether print of email
+        """Selecting a publication will determine whether print of email
         distribution is valid. If a publication is changed  fields for
-        distribution will be set to sensible defaults for the publication'''
+        distribution will be set to sensible defaults for the publication."""
         if not publication_id:
             return {}  # do nothing
         publication_model = self.pool['publication.publication']
@@ -56,6 +56,9 @@ class Subscription(orm.Model):
         # to partner preferences.
         if (result['value']['email_distribution']
                 and result['value']['email_distribution']):
+            # If we get here the values for print and email will both be
+            # True. A distribution-preference False or 'both' will not
+            # have any effect.
             if distribution_preference == 'print':
                 result['value']['email_distribution'] = False
             if distribution_preference == 'email':
@@ -63,9 +66,26 @@ class Subscription(orm.Model):
                 result['value']['copies'] = 1
         return result
 
+    def on_change_partner_publication_id(
+            self, cr, uid, dummy_ids, partner_id, publication_id,
+            context=None):
+        """Onchange publication for stand-alone subscription form."""
+        distribution_preference = False
+        if partner_id:
+            partner_model = self.pool['res.partner']
+            partner_objs = partner_model.browse(
+                cr, uid, [partner_id], context=context)
+            if partner_objs:
+                distribution_preference = (
+                    partner_objs[0].distribution_preference)
+        return self.on_change_publication_id(
+            cr, uid, dummy_ids, publication_id, distribution_preference,
+            context=context
+        )
+
     def get_root_analytic_account_id(self, cr, uid):
-        '''Return id of standard analytic account to use as parent in
-        subscription contract.'''
+        """Return id of standard analytic account to use as parent in
+        subscription contract."""
         try:
             return self._root_analytic_account_id
         except AttributeError:
@@ -78,7 +98,7 @@ class Subscription(orm.Model):
         return self._root_analytic_account_id
 
     def get_product_uom_unit_id(self, cr, uid):
-        '''We need unit product uom for contract line'''
+        """We need unit product uom for contract line."""
         try:
             return self._product_uom_unit_id
         except AttributeError:
@@ -90,7 +110,7 @@ class Subscription(orm.Model):
         return self._product_uom_unit_id
 
     def unlink(self, cr, uid, ids, context=None):
-        '''Unlink contract that exists only to support subscription'''
+        """Unlink contract that exists only to support subscription."""
         analytic_model = self.pool['account.analytic.account']
         for this_obj in self.browse(cr, uid, ids, context=context):
             # Save contract id if present
@@ -106,9 +126,9 @@ class Subscription(orm.Model):
         return True
 
     def _synchronize_contract(self, cr, uid, ids, context=None):
-        '''Make sure subscriptions remain synchronized with contracts.
+        """Make sure subscriptions remain synchronized with contracts.
         Contracts themselves should not be modified directly, because
-        synchronization is one way only.'''
+        synchronization is one way only."""
         analytic_model = self.pool['account.analytic.account']
         # analytic account invoice line is NOT !!!! an invoice line, but
         # a specification of the products and amounts in the contract!!
@@ -118,8 +138,11 @@ class Subscription(orm.Model):
                 this_obj.contract_id and this_obj.contract_id.id or False)
             product_id = (
                 this_obj.product_id and this_obj.product_id.id or False)
-            # If there is a contract, but no product, delete contract:
-            if contract_id and not product_id:
+            if not contract_id and not product_id:
+                # If no contract and no product, no need to do anything:
+                pass
+            elif contract_id and not product_id:
+                # If there is a contract, but no product, delete contract:
                 super(Subscription, self).write(
                     cr, uid, [this_obj.id], {'contract_id': False},
                     context=context
@@ -178,9 +201,8 @@ class Subscription(orm.Model):
                         cr, uid, line_vals, context=context)
         return True
 
-
     def write(self, cr, uid, ids, vals, context=None):
-        '''Update contracts when subscriptions are updated'''
+        """Update contracts when subscriptions are updated."""
         if 'copies' in vals and vals['copies'] < 1:
             vals['copies'] = 1
         res = super(Subscription, self).write(
@@ -189,7 +211,7 @@ class Subscription(orm.Model):
         return res
 
     def create(self, cr, uid, vals, context=None):
-        '''Create contract if publication is linked to a product'''
+        """Create contract if publication is linked to a product."""
         if 'copies' in vals and vals['copies'] < 1:
             vals['copies'] = 1
         new_id = super(Subscription, self).create(
@@ -197,6 +219,14 @@ class Subscription(orm.Model):
         if 'product_id' in vals and vals['product_id']:
             self._synchronize_contract(cr, uid, [new_id], context=context)
         return new_id
+
+    def _get_name(self, cr, uid, ids, field_name, args, context=None):
+        """Create subscription name from publication and partner."""
+        res = {}
+        for this_obj in self.browse(cr, uid, ids, context=context):
+            res[this_obj.id] = ' - '.join([
+                this_obj.partner_id.name, this_obj.publication_id.name])
+        return res
 
     _columns = {
         'partner_id': fields.many2one(
@@ -208,6 +238,12 @@ class Subscription(orm.Model):
             'publication.publication',
             'Publication',
             required=True,
+        ),
+        'name': fields.function(
+            _get_name,
+            type='char',
+            size=64,
+            string='Active'
         ),
         'date_start': fields.date('Date start', required=True),
         'date_end': fields.date('Date end'),

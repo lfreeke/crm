@@ -1,0 +1,81 @@
+<openerp>
+    <data>
+        <record
+            id="subscription_tree"
+            model="ir.ui.view">
+            <field name="name">subscription.tree</field>
+            <field name="model">publication.subscription</field>
+            <field name="type">tree</field>
+            <field
+                name="arch"
+                type="xml"
+            >
+                <tree string="Subscriptions">
+                    <field name="partner_id" />
+                    <field name="publication_id" />
+                    <field name="date_start" />
+                    <field name="date_end" />
+                    <field name="email_distribution" />
+                    <field name="print_distribution" />
+                    <field name="copies" />
+                </tree>
+            </field>
+        </record>
+
+        <record
+            id="subscription_form"
+            model="ir.ui.view"
+        >
+            <field name="name">subscription.form</field>
+            <field name="model">publication.subscription</field>
+            <field name="type">form</field>
+            <field
+                name="arch"
+                type="xml"
+            >
+                <form string="Subscription">
+                    <field
+                        name="partner_id"
+                        options="{'create': false, 'create_edit': false}"
+                    />
+                    <group 
+                        colspan="4" col="2"
+                        attrs="{'invisible': [('partner_id','=',False),]}"
+                    >
+                        <field
+                            name="publication_id"
+                            domain="[('active','=',True),]"
+                            options="{'create': false, 'create_edit': false}"
+                            on_change="on_change_partner_publication_id(partner_id, publication_id)"
+                        />
+                    </group>
+                    <group 
+                        colspan="4" col="2"
+                        attrs="{'invisible': [('publication_id','=',False),]}"
+                    >
+                        <field name="date_start" />
+                        <field name="date_end" />
+                        <field name="email_distribution" />
+                        <field name="print_distribution" />
+                        <field
+                            name="copies"
+                            attrs="{
+                                'invisible': [('print_distribution','=',False)]
+                            }"
+                        />
+                        <field
+                            name="product_id"
+                            domain="[
+                                ('publication_id','=',publication_id),
+                                ('email_distribution','=',email_distribution),
+                                ('print_distribution','=',print_distribution),
+                            ]"
+                            options="{'create': false, 'create_edit': false}"
+                        />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>
