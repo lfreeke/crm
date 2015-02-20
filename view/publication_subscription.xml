@@ -1,5 +1,36 @@
 <openerp>
     <data>
+        <record id="subscription_search" model="ir.ui.view">
+            <field name="name">Search view for subscriptions</field>
+            <field name="model">publication.subscription</field>
+            <field name="arch" type="xml">
+                <search string="Subscriptions" version="7.0">
+                    <field name="partner_id" />
+                    <field name="publication_id" />
+                    <filter
+                        name="email" string="Email"
+                        domain="[('email_distribution', '=', True)]"
+                        help="Email publications"
+                    />
+                    <filter
+                        name="print" string="Print"
+                        domain="[('print_distribution', '=', True)]"
+                        help="Print publications"
+                    />
+                    <separator/>
+                    <group expand="0" string="Group By...">
+                        <filter
+                            string="Partner"
+                            context="{'group_by':'partner_id'}"
+                        />
+                        <filter
+                            string="Publication"
+                            context="{'group_by':'publication_id'}"
+                        />
+                    </group>
+                </search>
+            </field>
+        </record>
         <record
             id="subscription_tree"
             model="ir.ui.view">
