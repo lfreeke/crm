@@ -27,6 +27,23 @@ class Subscription(orm.Model):
     """Link partners to publications."""
     _name = 'publication.subscription'
 
+    def name_search(
+            self, cr, uid, name, args=None, operator='ilike',
+            context=None, limit=100):
+        """We have no real name. Search on name of publication."""
+        newargs = args and args[:] or []  # copy or empty
+        if name:
+            publication_model = self.pool['publication.publication']
+            publication_ids = publication_model.search(
+                cr, uid, [('name', operator, name)], context=context)
+            if not publication_ids:
+                return False
+            newargs.append(('publication_id', 'in', publication_ids))
+        ids = super(Subscription, self).search(
+            cr, uid, args=newargs, limit=limit, context=context)
+        res = self.name_get(cr, uid, ids, context=context)
+        return res
+
     def on_change_publication_id(
             self, cr, uid, dummy_ids, publication_id, distribution_preference,
             context=None):
