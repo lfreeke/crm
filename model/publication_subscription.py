@@ -37,7 +37,7 @@ class Subscription(orm.Model):
             publication_ids = publication_model.search(
                 cr, uid, [('name', operator, name)], context=context)
             if not publication_ids:
-                return False
+                return []
             newargs.append(('publication_id', 'in', publication_ids))
         ids = super(Subscription, self).search(
             cr, uid, args=newargs, limit=limit, context=context)
