@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="subscription_search" model="ir.ui.view">
+        <field name="name">Search view for subscriptions</field>
+        <field name="model">publication.subscription.address</field>
+        <field name="arch" type="xml">
+            <search string="Subscriptions">
+                <field name="publication_id" />
+                <field name="partner_id" />
+                <group expand="0" string="Group By...">
+                    <filter
+                        string="Partner"
+                        context="{'group_by':'partner_id'}"
+                        />
+                    <filter
+                        string="Publication"
+                        context="{'group_by':'publication_id'}"
+                        />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record
+        id="subscription_tree"
+        model="ir.ui.view">
+        <field name="name">subscription.tree</field>
+        <field name="model">publication.subscription.address</field>
+        <field name="type">tree</field>
+        <field
+            name="arch"
+            type="xml"
+            >
+            <tree string="Subscriptions">
+                <field name="publication_id" />
+                <field name="partner_id" />
+                <field name="contract_partner_id" />
+                <field name="copies" />
+                <field name="display_address" />
+            </tree>
+        </field>
+    </record>
+
+    <record
+        id="subscription_form"
+        model="ir.ui.view"
+        >
+        <field name="name">subscription.form</field>
+        <field name="model">publication.subscription.address</field>
+        <field name="type">form</field>
+        <field
+            name="arch"
+            type="xml"
+            >
+            <form string="Subscription Address">
+                <group 
+                    colspan="4" col="2"
+                    attrs="{'invisible': [('partner_id','=',False),]}"
+                    >
+                    <field
+                        name="publication_id"
+                        domain="[('active','=',True),]"
+                        options="{'create': false, 'create_edit': false}"
+                        />
+                    <field
+                        name="partner_id"
+                        options="{'create': false, 'create_edit': false}"
+                        />
+                    <field
+                        name="contract_partner_id"
+                        options="{'create': false, 'create_edit': false}"
+                        />
+                    <field
+                        name="copies"
+                        attrs="{'invisible': [('print_distribution','=',False)]}"
+                        />
+                    <field
+                        name="display_address"
+                        />
+                </group>
+            </form>
+        </field>
+    </record>
+
+</odoo>
