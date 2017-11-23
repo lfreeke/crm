@@ -29,6 +29,10 @@ class PublicationSubscriptionAddress(models.Model):
     def _compute_name_address(self):
         """Create subscription name from publication and partner."""
         for this in self:
+            if not this.publication_id or not this.partner_id:
+                this.name = False
+                this.display_address = False
+                continue
             this.name = ' - '.join(
                 [this.publication_id.name, this.partner_id.name])
             if this.publication_id.distribution_type == 'email':
