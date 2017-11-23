@@ -10,12 +10,16 @@
                 <field name="partner_id" />
                 <group expand="0" string="Group By...">
                     <filter
-                        string="Partner"
+                        string="Publication"
+                        context="{'group_by':'publication_id'}"
+                        />
+                    <filter
+                        string="Receiving Partner"
                         context="{'group_by':'partner_id'}"
                         />
                     <filter
-                        string="Publication"
-                        context="{'group_by':'publication_id'}"
+                        string="Contract Partner"
+                        context="{'group_by':'contract_partner_id'}"
                         />
                 </group>
             </search>
@@ -54,10 +58,7 @@
             type="xml"
             >
             <form string="Subscription Address">
-                <group 
-                    colspan="4" col="2"
-                    attrs="{'invisible': [('partner_id','=',False),]}"
-                    >
+                <group colspan="4" col="4">
                     <field
                         name="publication_id"
                         domain="[('active','=',True),]"
@@ -73,7 +74,7 @@
                         />
                     <field
                         name="copies"
-                        attrs="{'invisible': [('print_distribution','=',False)]}"
+                        attrs="{'invisible': [('publication_id.distribution_type','=','email')]}"
                         />
                     <field
                         name="display_address"

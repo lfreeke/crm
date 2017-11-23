@@ -13,7 +13,7 @@
     <menuitem
         id="menu_subscription"
         action="action_subscription"
-        name="Subscriptions"
+        name="Subscription addresses"
         parent="sales_team.menu_sales"
         sequence="60"
         />
