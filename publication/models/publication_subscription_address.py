@@ -26,9 +26,11 @@ class PublicationSubscriptionAddress(models.Model):
         return subscriptions.name_get()
 
     @api.depends('publication_id', 'partner_id')
-    def _compute_display_address(self):
+    def _compute_name_address(self):
         """Create subscription name from publication and partner."""
         for this in self:
+            this.name = ' - '.join(
+                [this.publication_id.name, this.partner_id.name])
             if this.publication_id.distribution_type == 'email':
                 this.display_address = this.partner_id.email
             else:
@@ -47,6 +49,9 @@ class PublicationSubscriptionAddress(models.Model):
         string='Contract Partner',
         required=True)
     copies = fields.Integer(string='Number of copies', default=1)
+    name = fields.Char(
+        compute='_compute_name_address',
+        string='Name')
     display_address = fields.Char(
-        compute='_compute_display_address',
+        compute='_compute_name_address',
         string='Receiving address')
