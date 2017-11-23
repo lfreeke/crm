@@ -38,7 +38,7 @@ class PublicationSubscriptionAddress(models.Model):
             if this.publication_id.distribution_type == 'email':
                 this.display_address = this.partner_id.email
             else:
-                this.display_address = this.partner_id.contract_address
+                this.display_address = this.partner_id.contact_address
 
     publication_id = fields.Many2one(
         comodel_name='publication.publication',
