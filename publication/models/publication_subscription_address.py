@@ -25,7 +25,7 @@ class PublicationSubscriptionAddress(models.Model):
             args=newargs, limit=limit)
         return subscriptions.name_get()
 
-    @api.multi
+    @api.depends('publication_id', 'partner_id')
     def _compute_display_address(self):
         """Create subscription name from publication and partner."""
         for this in self:
