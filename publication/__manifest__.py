@@ -17,7 +17,7 @@
     'data': [
         'data/account_analytic_account.xml',
         'views/publication_publication.xml',
-        'views/publication_subscription.xml',
+        'views/publication_subscription_address.xml',
         'views/res_partner.xml',
         'views/menu.xml',
         'security/ir.model.access.csv',
