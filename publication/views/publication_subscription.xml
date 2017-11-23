@@ -72,13 +72,14 @@
                         name="contract_partner_id"
                         options="{'create': false, 'create_edit': false}"
                         />
+                    <!-- For ome unfathomable reason publication_id.distribution_type is unknown
                     <field
                         name="copies"
                         attrs="{'invisible': [('publication_id.distribution_type','=','email')]}"
                         />
-                    <field
-                        name="display_address"
-                        />
+                    -->
+                    <field name="copies" />
+                    <field name="display_address" />
                 </group>
             </form>
         </field>
