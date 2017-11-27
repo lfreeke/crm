@@ -17,7 +17,7 @@ class Publication(models.Model):
     product_id = fields.Many2one(
         comodel_name='product.product',
         string='Product',
-        readonly=True,
+        required=True,
         help="Product for this publication")
     version_ids = fields.One2many(
         comodel_name='publication.version',
