@@ -28,7 +28,7 @@ class AccountAnalyticInvoiceLine(models.Model):
                 " JOIN account_analytic_account aaa"
                 "     ON aail.analytic_account_id = aaa.id"
                 " WHERE aail.id = %s",
-                this.id)
+                (this.id, ))
             partner = partner_model.browse([partner_id[0]])
             this.partner_id = partner
 
