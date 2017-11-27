@@ -4,6 +4,17 @@
 from odoo import api, fields, models
 
 
+# Define constants for SQL statements. Makes it easier to copy from
+# editor to psql console.
+SQL_ANALYTIC = """
+SELECT aaa.partner_id
+ FROM account_analytic_invoice_line aail
+ JOIN account_analytic_account aaa
+     ON aail.analytic_account_id = aaa.id
+ WHERE aail.id = %s
+"""
+
+
 class AccountAnalyticInvoiceLine(models.Model):
     _inherit = 'account.analytic.invoice.line'
 
@@ -22,14 +33,9 @@ class AccountAnalyticInvoiceLine(models.Model):
         partner_model = self.env['res.partner']
         for this in self:
             # Hack based on fact that database field not corrupted:
-            partner_id = self.env.cr.execute(
-                "SELECT aaa.partner_id"
-                " FROM account_analytic_invoice_line aail"
-                " JOIN account_analytic_account aaa"
-                "     ON aail.analytic_account_id = aaa.id"
-                " WHERE aail.id = %s",
-                (this.id, ))
-            partner = partner_model.browse([partner_id[0]])
+            self.env.cr.execute(SQL_ANALYTIC, (this.id, ))
+            record = self.env.cr.fetch_one()
+            partner = partner_model.browse([record[0]])
             this.partner_id = partner
 
     subscription_product_line = fields.Boolean(
