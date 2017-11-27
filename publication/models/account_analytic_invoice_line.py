@@ -13,7 +13,7 @@ class AccountAnalyticInvoiceLine(models.Model):
         publication_model = self.env['publication.publication']
         for this in self:
             publication = publication_model.search(
-                [('product_id', '=', this.id)], limit=1)
+                [('product_id', '=', this.product_id.id)], limit=1)
             this.subscription_product_line = bool(publication)
 
     @api.multi
