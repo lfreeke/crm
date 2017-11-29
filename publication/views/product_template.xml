@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record
+        id="product_template_form_view"
+        model="ir.ui.view">
+        <field name="name">product.template.common.form.publication</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="type">form</field>
+        <field
+            name="arch"
+            type="xml">
+            <xpath
+                expr="//label[@for='sale_ok']"
+                position="after"
+                >
+                <field name="publication" />
+                <label for="publication" />
+            </xpath>
+            <xpath
+                expr="//page[last()]"
+                position="after"
+                >
+                <page
+                    string="Publication"
+                    attrs="{'visible': [('publication','=',True)]}"
+                    >
+                    <field name="distribution_type" />
+                    <field name="publishing_frequency_type" />
+                    <field name="publishing_frequency_interval" />
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

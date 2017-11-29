@@ -21,8 +21,37 @@
                 <page
                     string="Subscriptions"
                     >
-                    <field name="subscription_ids" />
-                    <field name="subscription_address_ids" />
+                    <group colspan="6" col="4">
+                        <separator string="Subscription contract lines" />
+                        <field
+                            name="subscription_ids"
+                            nolabel="1"
+                            col="4"
+                            >
+                            <tree>
+                                <field name="product_id" />
+                                <field name="quantity" />
+                                <button
+                                    name="edit_distribution_list"
+                                    type="object"
+                                    />
+                            </tree>
+                        </field>
+                        <separator string="Publications to receive" />
+                        <field
+                            name="distribution_list_ids"
+                            nolabel="1"
+                            col="4"
+                            >
+                            <tree>
+                                <field name="product_id" />
+                                <field name="copies" />
+                                <field name="date_start" />
+                                <field name="date_end" />
+                                <field name="contract_partner_id" />
+                            </tree>
+                        </field>
+                    </group>
                 </page>
             </xpath>
         </field>

@@ -40,8 +40,8 @@
                 <field name="publication_id" />
                 <field name="partner_id" />
                 <field name="contract_partner_id" />
-                <field name="copies" />
                 <field name="display_address" />
+                <field name="copies" />
             </tree>
         </field>
     </record>
@@ -71,12 +71,14 @@
                         name="contract_partner_id"
                         options="{'create': false, 'create_edit': false}"
                         />
-                    <!-- For ome unfathomable reason publication_id.distribution_type is unknown
+                    <!-- For some unfathomable reason publication_id.distribution_type is unknown
                     <field
                         name="copies"
                         attrs="{'invisible': [('publication_id.distribution_type','=','email')]}"
                         />
                     -->
+                    <field name="date_start" />
+                    <field name="date_end" />
                     <field name="copies" />
                     <field name="display_address" />
                 </group>

@@ -10,10 +10,10 @@ class ResPartner(models.Model):
     subscription_ids = fields.One2many(
         comodel_name='account.analytic.invoice.line',
         inverse_name='partner_id',
-        domain=[('subscription_product_line', '=', True)],
-        string='Subscription contracts')
+        domain=[('publication', '=', True)],
+        string='Subscription contract lines')
 
-    subscription_address_ids = fields.One2many(
-        comodel_name='publication.subscription.address',
+    distribution_list_ids = fields.One2many(
+        comodel_name='distribution.list',
         inverse_name='partner_id',
         string='Publications received')

@@ -18,15 +18,6 @@ SELECT aaa.partner_id
 class AccountAnalyticInvoiceLine(models.Model):
     _inherit = 'account.analytic.invoice.line'
 
-    @api.depends('product_id')
-    def _compute_subscription_product_line(self):
-        """Check wether contract line is for a publication."""
-        publication_model = self.env['publication.publication']
-        for this in self:
-            publication = publication_model.search(
-                [('product_id', '=', this.product_id.id)], limit=1)
-            this.subscription_product_line = bool(publication)
-
     @api.multi
     def _compute_partner_id(self):
         """We need this, because reference to contract is broken."""
@@ -38,9 +29,9 @@ class AccountAnalyticInvoiceLine(models.Model):
             partner = partner_model.browse([record[0]])
             this.partner_id = partner
 
-    subscription_product_line = fields.Boolean(
+    publication = fields.Boolean(
         string='Subscription product line',
-        compute='_compute_subscription_product_line',
+        related='product_id.publication',
         store=True)
     partner_id = fields.Many2one(
         comodel_name='res.partner',

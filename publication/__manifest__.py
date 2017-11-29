@@ -10,14 +10,14 @@
     'license': 'AGPL-3',
     'summary': 'Maintain electronic or print publications for your relations.',
     'depends': [
-        'sales_team',
+        'sales',
         'contract',
         'web_m2x_options',
     ],
     'data': [
         'data/account_analytic_account.xml',
-        'views/publication_publication.xml',
-        'views/publication_subscription_address.xml',
+        'views/product_template.xml',
+        'views/distribution_list.xml',
         'views/res_partner.xml',
         'views/menu.xml',
         'security/ir.model.access.csv',
