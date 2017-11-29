@@ -10,7 +10,7 @@
     'license': 'AGPL-3',
     'summary': 'Maintain electronic or print publications for your relations.',
     'depends': [
-        'sales',
+        'sale',
         'contract',
         'web_m2x_options',
     ],
