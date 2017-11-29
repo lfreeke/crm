@@ -15,8 +15,8 @@
             name="arch"
             type="xml">
             <xpath
-                expr="//label[@for='sale_ok']"
-                position="after"
+                expr="//div[@name='options']"
+                position="inside"
                 >
                 <field name="publication" />
                 <label for="publication" />
@@ -27,11 +27,13 @@
                 >
                 <page
                     string="Publication"
-                    attrs="{'visible': [('publication','=',True)]}"
+                    attrs="{'invisible': [('publication','=',False)]}"
                     >
-                    <field name="distribution_type" />
-                    <field name="publishing_frequency_type" />
-                    <field name="publishing_frequency_interval" />
+                    <group colspan="6" col="4">
+                        <field name="distribution_type" />
+                        <field name="publishing_frequency_type" />
+                        <field name="publishing_frequency_interval" />
+                    </group>
                 </page>
             </xpath>
         </field>

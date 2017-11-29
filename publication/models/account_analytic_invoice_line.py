@@ -25,7 +25,7 @@ class AccountAnalyticInvoiceLine(models.Model):
         for this in self:
             # Hack based on fact that database field not corrupted:
             self.env.cr.execute(SQL_ANALYTIC, (this.id, ))
-            record = self.env.cr.fetch_one()
+            record = self.env.cr.fetchone()
             partner = partner_model.browse([record[0]])
             this.partner_id = partner
 

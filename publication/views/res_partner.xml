@@ -22,11 +22,14 @@
                     string="Subscriptions"
                     >
                     <group colspan="6" col="4">
-                        <separator string="Subscription contract lines" />
+                        <separator
+                            string="Subscription contract lines"
+                            colspan="4"
+                            />
                         <field
                             name="subscription_ids"
                             nolabel="1"
-                            col="4"
+                            colspan="4"
                             >
                             <tree>
                                 <field name="product_id" />
@@ -37,11 +40,15 @@
                                     />
                             </tree>
                         </field>
-                        <separator string="Publications to receive" />
+                        <separator
+                            string="Publications to receive"
+                            colspan="4"
+                            />
+                            />
                         <field
                             name="distribution_list_ids"
                             nolabel="1"
-                            col="4"
+                            colspan="4"
                             >
                             <tree>
                                 <field name="product_id" />
