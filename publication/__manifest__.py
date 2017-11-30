@@ -10,12 +10,11 @@
     'license': 'AGPL-3',
     'summary': 'Maintain electronic or print publications for your relations.',
     'depends': [
-        'sale',
-        'contract',
+        'partner_noncommercial',
+        'contract_line_extended',
         'web_m2x_options',
     ],
     'data': [
-        'data/account_analytic_account.xml',
         'views/product_template.xml',
         'views/distribution_list.xml',
         'views/res_partner.xml',

@@ -14,7 +14,7 @@
         id="menu_distribution_list"
         action="action_distribution_list"
         name="Distribution List"
-        parent="sales_team.menu_sales"
+        parent="partner_noncommercial.menu_partner"
         sequence="60"
         />
 
@@ -32,8 +32,8 @@
         id="menu_publication"
         action="action_publication"
         name="Publications"
-        parent="sales_team.menu_sales"
-        sequence="70"
+        parent="partner_noncommercial.menu_partner"
+        sequence="76"
         />
 
 </odoo>
