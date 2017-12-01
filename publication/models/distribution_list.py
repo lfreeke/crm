@@ -137,5 +137,5 @@ class DistributionList(models.Model):
         if not valid_partners:
             raise ValidationError(_(
                 "There are no active subscriptions for this publication."))
-        partner_domain = [('contract_partner_id', 'in', valid_partners)]
+        partner_domain = [('id', 'in', valid_partners)]
         return {'domain': {'contract_partner_id': partner_domain}}
