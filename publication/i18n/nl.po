@@ -75,7 +75,7 @@ msgstr "Voorkeur voor email of drukwerk"
 #: model:ir.actions.act_window,name:publication.action_distribution_list
 #: model:ir.ui.menu,name:publication.menu_distribution_list
 msgid "Distribution List"
-msgstr "Voorkeur voor email of drukwerk"
+msgstr "Verzendlijst"
 
 #. module: publication
 #: selection:product.template,distribution_type:0

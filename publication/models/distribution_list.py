@@ -74,6 +74,10 @@ class DistributionList(models.Model):
         string='Publication',
         domain=[('publication', '=', True)],
         required=True)
+    distribution_type = fields.Boolean(
+        string='Type of publication',
+        related='product_id.distribution_type',
+        store=True)
     partner_id = fields.Many2one(
         comodel_name='res.partner',
         string='Receiving Partner',

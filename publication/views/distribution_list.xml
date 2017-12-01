@@ -80,9 +80,10 @@
                             />
                         <field name="date_start" />
                         <field name="date_end" />
+                        <field name="distribution_type" />
                         <field
                             name="copies"
-                            attrs="{'invisible': [('product_id.distribution_type','=','email')]}"
+                            attrs="{'invisible': [('distribution_type','=','email')]}"
                             />
                         <field name="display_address" />
                     </group>
