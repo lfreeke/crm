@@ -139,3 +139,12 @@ class DistributionList(models.Model):
                 "There are no active subscriptions for this publication."))
         partner_domain = [('id', 'in', valid_partners)]
         return {'domain': {'contract_partner_id': partner_domain}}
+
+    @api.constrains('available_count')
+    @api.multi
+    def _limit_count(self):
+        """Limit number of copies send to amount set in contract lines."""
+        for this in self:
+            if available_count < 0:
+                raise ValidationError(_(
+                    "Number of copies sent can not exceed contracted number"))
