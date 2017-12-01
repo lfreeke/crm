@@ -80,7 +80,7 @@
                             />
                         <field name="date_start" />
                         <field name="date_end" />
-                        <field name="distribution_type" />
+                        <field name="distribution_type" readonly="1" />
                         <field
                             name="copies"
                             attrs="{'invisible': [('distribution_type','=','email')]}"

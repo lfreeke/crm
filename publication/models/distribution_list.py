@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # Copyright 2014-2017 Therp BV <https://therp.nl>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 SQL_CONTRACT_COUNT = """
@@ -50,6 +51,7 @@ class DistributionList(models.Model):
                 this.active = False
 
     @api.multi
+    @api.depends('product_id', 'contract_partner_id', 'copies')
     def _compute_counts(self):
         """Used to check how many addresses can still be added."""
         cr = self.env.cr
@@ -86,7 +88,10 @@ class DistributionList(models.Model):
         comodel_name='res.partner',
         string='Contract Partner',
         required=True)
-    date_start = fields.Date(string='Date start', required=True)
+    date_start = fields.Date(
+        string='Date start',
+        default=fields.Date.today(),
+        required=True)
     date_end = fields.Date(
         string='Date end',
         help="End date is exclusive.")
@@ -107,3 +112,30 @@ class DistributionList(models.Model):
     available_count = fields.Integer(
         string="Number still available",
         compute='_compute_counts')
+
+    @api.onchange('product_id', 'contract_partner_id')
+    def _onchange_keyfields(self):
+        """Sets the proper domain for contract_partner.
+
+        Also enforces first selecting the publication.
+        """
+        self.ensure_one()
+        if self.contract_partner_id and not self.partner_id:
+            self.partner_id = self.contract_partner_id
+        if self.contract_partner_id and not self.product_id:
+            raise ValidationError(_(
+                "You must select a publication, before selecting"
+                " the contract partner."))
+        if not self.product_id:
+            return
+        valid_partners = []
+        line_model = self.env['account.analytic.invoice.line']
+        lines = line_model.search([('product_id', '=', self.product_id.id)])
+        for line in lines:
+            if line.contract_id.partner_id.id not in valid_partners:
+                valid_partners.append(line.contract_id.partner_id.id)
+        if not valid_partners:
+            raise ValidationError(_(
+                "There are no active subscriptions for this publication."))
+        partner_domain = [('contract_partner_id', 'in', valid_partners)]
+        return {'domain': {'contract_partner_id': partner_domain}}
