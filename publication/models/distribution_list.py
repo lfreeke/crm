@@ -145,6 +145,6 @@ class DistributionList(models.Model):
     def _limit_count(self):
         """Limit number of copies send to amount set in contract lines."""
         for this in self:
-            if available_count < 0:
+            if self.available_count < 0:
                 raise ValidationError(_(
                     "Number of copies sent can not exceed contracted number"))
