@@ -64,23 +64,31 @@
                         options="{'create': false, 'create_edit': false}"
                         />
                     <field
-                        name="partner_id"
-                        options="{'create': false, 'create_edit': false}"
-                        />
-                    <field
                         name="contract_partner_id"
                         options="{'create': false, 'create_edit': false}"
                         />
-                    <!-- For some unfathomable reason product_id.distribution_type is unknown
-                    <field
-                        name="copies"
-                        attrs="{'invisible': [('product_id.distribution_type','=','email')]}"
-                        />
-                    -->
-                    <field name="date_start" />
-                    <field name="date_end" />
-                    <field name="copies" />
-                    <field name="display_address" />
+                    <group
+                        attrs="{'invisible': ['|',('product_id','=',False),('contract_partner_id','=',False)]}"
+                        colspan="4" col="6"
+                        >
+                        <field name="contract_count" />
+                        <field name="assigned_count" />
+                        <field name="available_count" />
+                        <field
+                            name="partner_id"
+                            options="{'create': false, 'create_edit': false}"
+                            />
+                        <!-- For some unfathomable reason product_id.distribution_type is unknown
+                        <field
+                            name="copies"
+                            attrs="{'invisible': [('product_id.distribution_type','=','email')]}"
+                            />
+                        -->
+                        <field name="date_start" />
+                        <field name="date_end" />
+                        <field name="copies" />
+                        <field name="display_address" />
+                    </group>
                 </group>
             </form>
         </field>

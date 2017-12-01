@@ -4,6 +4,21 @@
 from odoo import api, fields, models
 
 
+SQL_CONTRACT_COUNT = """
+SELECT COALESCE(SUM(ROUND(l.quantity)::integer), 0) as quantity
+ FROM account_analytic_invoice_line l
+ JOIN account_analytic_account c
+ ON l.contract_id = c.id
+ WHERE l.product_id = %s
+ AND c.partner_id = %s"""
+
+SQL_ASSIGNED_COUNT = """
+SELECT COALESCE(SUM(copies), 0) as copies
+ FROM distribution_list
+ WHERE product_id = %s
+ AND contract_partner_id = %s"""
+
+
 class DistributionList(models.Model):
     _name = 'distribution.list'
     _order = 'name'
@@ -34,6 +49,26 @@ class DistributionList(models.Model):
             else:
                 this.active = False
 
+    @api.multi
+    def _compute_counts(self):
+        """Used to check how many addresses can still be added."""
+        cr = self.env.cr
+        for this in self:
+            if not self.product_id or not self.contract_partner_id:
+                continue
+            cr.execute(
+                SQL_CONTRACT_COUNT,
+                (this.product_id.id, this.contract_partner_id.id))
+            contract_count = cr.fetchone()[0]
+            cr.execute(
+                SQL_ASSIGNED_COUNT,
+                (this.product_id.id, this.contract_partner_id.id))
+            assigned_count = cr.fetchone()[0]
+            available_count = contract_count - assigned_count
+            this.contract_count = contract_count
+            this.assigned_count = assigned_count
+            this.available_count = available_count
+
     product_id = fields.Many2one(
         comodel_name='product.product',
         string='Publication',
@@ -59,3 +94,12 @@ class DistributionList(models.Model):
     display_address = fields.Char(
         compute='_compute_name_address',
         string='Receiving address')
+    contract_count = fields.Integer(
+        string="Number to distribute",
+        compute='_compute_counts')
+    assigned_count = fields.Integer(
+        string="Number already assigned",
+        compute='_compute_counts')
+    available_count = fields.Integer(
+        string="Number still available",
+        compute='_compute_counts')

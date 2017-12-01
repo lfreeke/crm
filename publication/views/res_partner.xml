@@ -30,14 +30,18 @@
                             name="subscription_ids"
                             nolabel="1"
                             colspan="4"
+                            readonly="1"
                             >
                             <tree>
                                 <field name="product_id" />
                                 <field name="quantity" />
                                 <button
-                                    name="edit_distribution_list"
+                                    name="action_distribution_list"
                                     type="object"
-                                    />
+                                    class="oe_stat_button"
+                                    icon="fa-truck"
+                                    >
+                                </button>
                             </tree>
                         </field>
                         <separator
@@ -49,6 +53,7 @@
                             name="distribution_list_ids"
                             nolabel="1"
                             colspan="4"
+                            readonly="1"
                             >
                             <tree>
                                 <field name="product_id" />

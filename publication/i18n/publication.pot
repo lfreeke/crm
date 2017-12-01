@@ -1,13 +1,13 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #	* publication
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-09 11:46+0000\n"
-"PO-Revision-Date: 2015-02-09 11:46+0000\n"
+"POT-Creation-Date: 2017-12-01 10:39+0000\n"
+"PO-Revision-Date: 2017-12-01 10:39+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,271 +16,263 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: publication
-#: field:publication.publication,active:0
-#: field:publication.subscription,name:0
+#: model:ir.model.fields,field_description:publication.field_distribution_list_active
 msgid "Active"
-msgstr "Active"
+msgstr ""
 
 #. module: publication
-#: field:product.product,email_distribution:0
-#: field:publication.publication,email_distribution:0
-msgid "Can be send by email"
-msgstr "Can be send by email"
+#: model:ir.model.fields,help:publication.field_product_product_publishing_frequency_type
+#: model:ir.model.fields,help:publication.field_product_template_publishing_frequency_type
+msgid "At what intervals publication is published"
+msgstr ""
 
 #. module: publication
-#: field:product.product,print_distribution:0
-#: field:publication.publication,print_distribution:0
-msgid "Can be send in print"
-msgstr "Can be send in print"
+#: model:ir.model.fields,field_description:publication.field_distribution_list_contract_partner_id
+#: model:ir.ui.view,arch_db:publication.subscription_search
+msgid "Contract Partner"
+msgstr ""
 
 #. module: publication
-#: field:publication.publication,code:0
-msgid "Code"
-msgstr "Code"
+#: model:ir.model.fields,field_description:publication.field_distribution_list_create_uid
+msgid "Created by"
+msgstr ""
 
 #. module: publication
-#: field:publication.subscription,contract_id:0
-msgid "Contract"
-msgstr "Contract"
+#: model:ir.model.fields,field_description:publication.field_distribution_list_create_date
+msgid "Created on"
+msgstr ""
 
 #. module: publication
-#: view:product.product:0
-msgid "Contract info"
-msgstr "Contract info"
-
-#. module: publication
-#: field:publication.publication,date_end:0
-#: field:publication.subscription,date_end:0
+#: model:ir.model.fields,field_description:publication.field_distribution_list_date_end
 msgid "Date end"
-msgstr "Date end"
+msgstr ""
 
 #. module: publication
-#: field:publication.publication,date_start:0
-#: field:publication.subscription,date_start:0
+#: model:ir.model.fields,field_description:publication.field_distribution_list_date_start
 msgid "Date start"
-msgstr "Date start"
+msgstr ""
 
 #. module: publication
-#: selection:product.product,recurring_rule_type:0
+#: selection:product.template,publishing_frequency_type:0
 msgid "Day(s)"
-msgstr "Day(s)"
+msgstr ""
 
 #. module: publication
-#: field:res.partner,distribution_preference:0
-msgid "Distribution preference"
-msgstr "Distribution preference"
+#: model:ir.model.fields,field_description:publication.field_distribution_list_display_name
+msgid "Display Name"
+msgstr ""
 
 #. module: publication
-#: selection:res.partner,distribution_preference:0
-msgid "Email"
-msgstr "Email"
+#: model:ir.model.fields,field_description:publication.field_product_product_distribution_type
+#: model:ir.model.fields,field_description:publication.field_product_template_distribution_type
+msgid "Distribution"
+msgstr ""
 
 #. module: publication
-#: code:addons/publication/model/publication_subscription.py:306
-#, python-format
-msgid "Email distribution for this publication not allowed"
-msgstr "Email distribution for this publication not allowed"
+#: model:ir.actions.act_window,name:publication.action_distribution_list
+#: model:ir.ui.menu,name:publication.menu_distribution_list
+msgid "Distribution List"
+msgstr ""
 
 #. module: publication
-#: code:addons/publication/model/publication_publication.py:61
-#: code:addons/publication/model/publication_subscription.py:276
-#, python-format
-msgid "End date before start date"
-msgstr "End date before start date"
+#: selection:product.template,distribution_type:0
+msgid "Electronic"
+msgstr ""
 
 #. module: publication
-#: help:product.product,recurring_rule_type:0
-msgid "Invoice automatically repeat at specified interval"
-msgstr "Invoice automatically repeat at specified interval"
+#: model:ir.model.fields,help:publication.field_distribution_list_date_end
+msgid "End date is exclusive."
+msgstr ""
 
 #. module: publication
-#: selection:product.product,recurring_rule_type:0
+#: model:ir.ui.view,arch_db:publication.subscription_search
+msgid "Group By..."
+msgstr ""
+
+#. module: publication
+#: model:ir.model.fields,field_description:publication.field_distribution_list_id
+msgid "ID"
+msgstr ""
+
+#. module: publication
+#: selection:product.template,publishing_frequency_type:0
+msgid "Irregular"
+msgstr ""
+
+#. module: publication
+#: model:ir.model.fields,field_description:publication.field_distribution_list___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: publication
+#: model:ir.model.fields,field_description:publication.field_distribution_list_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: publication
+#: model:ir.model.fields,field_description:publication.field_distribution_list_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: publication
+#: selection:product.template,publishing_frequency_type:0
 msgid "Month(s)"
-msgstr "Month(s)"
+msgstr ""
 
 #. module: publication
-#: field:publication.publication,name:0
+#: model:ir.model.fields,field_description:publication.field_distribution_list_name
 msgid "Name"
-msgstr "Name"
+msgstr ""
 
 #. module: publication
-#: code:addons/publication/model/publication_subscription.py:305
-#, python-format
-msgid "No email distribution for this publication"
-msgstr "No email distribution for this publication"
+#: model:ir.model.fields,field_description:publication.field_distribution_list_assigned_count
+msgid "Number already assigned"
+msgstr ""
 
 #. module: publication
-#: code:addons/publication/model/publication_subscription.py:311
-#, python-format
-msgid "No print distribution for this publication"
-msgstr "No print distribution for this publication"
-
-#. module: publication
-#: code:addons/publication/model/publication_subscription.py:46
-#, python-format
-msgid "No record for publication_id %d"
-msgstr "No record for publication_id %d"
-
-#. module: publication
-#: field:publication.subscription,copies:0
+#: model:ir.model.fields,field_description:publication.field_distribution_list_copies
 msgid "Number of copies"
-msgstr "Number of copies"
+msgstr ""
+
+#. module: publication
+#: model:ir.model.fields,field_description:publication.field_distribution_list_available_count
+msgid "Number still available"
+msgstr ""
+
+#. module: publication
+#: model:ir.model.fields,field_description:publication.field_distribution_list_contract_count
+msgid "Number to distribute"
+msgstr ""
 
 #. module: publication
 #: model:ir.model,name:publication.model_res_partner
-#: field:publication.subscription,partner_id:0
+#: model:ir.model.fields,field_description:publication.field_account_analytic_contract_line_partner_id
+#: model:ir.model.fields,field_description:publication.field_account_analytic_invoice_line_partner_id
 msgid "Partner"
-msgstr "Partner"
+msgstr ""
 
 #. module: publication
-#: selection:res.partner,distribution_preference:0
+#: selection:product.template,distribution_type:0
 msgid "Print"
-msgstr "Print"
+msgstr ""
 
 #. module: publication
-#: selection:res.partner,distribution_preference:0
-msgid "Print & Email"
-msgstr "Print & Email"
+#: model:ir.model,name:publication.model_product_template
+msgid "Product Template"
+msgstr ""
 
 #. module: publication
-#: code:addons/publication/model/publication_subscription.py:312
-#, python-format
-msgid "Print distribution for this publication not allowed"
-msgstr "Print distribution for this publication not allowed"
+#: model:ir.model.fields,field_description:publication.field_product_product_publication
+#: model:ir.model.fields,field_description:publication.field_product_template_publication
+msgid "Product is a publication?"
+msgstr ""
 
 #. module: publication
-#: model:ir.model,name:publication.model_product_product
-#: field:publication.subscription,product_id:0
-msgid "Product"
-msgstr "Product"
-
-#. module: publication
-#: field:product.product,publication_id:0
-#: view:publication.publication:0
-#: field:publication.subscription,publication_id:0
+#: model:ir.model.fields,field_description:publication.field_distribution_list_product_id
+#: model:ir.ui.view,arch_db:publication.product_template_only_form_view
+#: model:ir.ui.view,arch_db:publication.subscription_search
 msgid "Publication"
-msgstr "Publication"
+msgstr ""
 
 #. module: publication
-#: view:product.product:0
-msgid "Publication info"
-msgstr "Publication info"
-
-#. module: publication
-#: view:product.product:0
-msgid "Publication product"
-msgstr "Publication product"
-
-#. module: publication
+#: model:ir.actions.act_window,name:publication.action_publication
 #: model:ir.ui.menu,name:publication.menu_publication
 msgid "Publications"
-msgstr "Publications"
+msgstr ""
 
 #. module: publication
-#: field:publication.subscription,email_distribution:0
-msgid "Receive by email"
-msgstr "Receive by email"
+#: model:ir.model.fields,field_description:publication.field_res_partner_distribution_list_ids
+#: model:ir.model.fields,field_description:publication.field_res_users_distribution_list_ids
+msgid "Publications received"
+msgstr ""
 
 #. module: publication
-#: field:publication.subscription,print_distribution:0
-msgid "Receive in print"
-msgstr "Receive in print"
+#: model:ir.ui.view,arch_db:publication.res_partner_publication_form
+msgid "Publications to receive"
+msgstr ""
 
 #. module: publication
-#: field:product.product,recurring_rule_type:0
-msgid "Recurrency"
-msgstr "Recurrency"
+#: model:ir.model.fields,field_description:publication.field_product_product_publishing_frequency_interval
+#: model:ir.model.fields,field_description:publication.field_product_template_publishing_frequency_interval
+msgid "Publish Every"
+msgstr ""
 
 #. module: publication
-#: field:product.product,recurring_interval:0
-msgid "Repeat Every"
-msgstr "Repeat Every"
+#: model:ir.model.fields,help:publication.field_product_product_publishing_frequency_interval
+#: model:ir.model.fields,help:publication.field_product_template_publishing_frequency_interval
+msgid "Publish every (Days/Week/Month/Quarter/Year)"
+msgstr ""
 
 #. module: publication
-#: help:product.product,recurring_interval:0
-msgid "Repeat every (Days/Week/Month/Year)"
-msgstr "Repeat every (Days/Week/Month/Year)"
+#: model:ir.model.fields,field_description:publication.field_product_product_publishing_frequency_type
+#: model:ir.model.fields,field_description:publication.field_product_template_publishing_frequency_type
+msgid "Publishing frequency"
+msgstr ""
 
 #. module: publication
-#: code:addons/publication/model/publication_publication.py:71
-#: code:addons/publication/model/publication_subscription.py:298
-#, python-format
-msgid "Select at least one type of distribution"
-msgstr "Select at least one type of distribution"
+#: selection:product.template,publishing_frequency_type:0
+msgid "Quarterly"
+msgstr ""
 
 #. module: publication
-#: code:addons/publication/model/publication_publication.py:72
-#: code:addons/publication/model/publication_subscription.py:299
-#, python-format
-msgid "Select either email, or print or both distribution methods"
-msgstr "Select either email, or print or both distribution methods"
+#: model:ir.model.fields,field_description:publication.field_distribution_list_partner_id
+#: model:ir.ui.view,arch_db:publication.subscription_search
+msgid "Receiving Partner"
+msgstr ""
 
 #. module: publication
-#: view:publication.subscription:0
-msgid "Subscription"
-msgstr "Subscription"
+#: model:ir.model.fields,field_description:publication.field_distribution_list_display_address
+msgid "Receiving address"
+msgstr ""
 
 #. module: publication
-#: code:addons/publication/model/publication_subscription.py:288
-#, python-format
-msgid "Subscription can not end after publication"
-msgstr "Subscription can not end after publication"
+#: model:ir.model.fields,help:publication.field_product_product_distribution_type
+#: model:ir.model.fields,help:publication.field_product_template_distribution_type
+msgid "Required if product is  publication"
+msgstr ""
 
 #. module: publication
-#: code:addons/publication/model/publication_subscription.py:282
-#, python-format
-msgid "Subscription can not start before publication"
-msgstr "Subscription can not start before publication"
+#: model:ir.ui.view,arch_db:publication.subscription_form
+msgid "Subscription Address"
+msgstr ""
 
 #. module: publication
-#: model:ir.ui.menu,name:publication.menu_subscription
-#: view:publication.subscription:0
-#: view:res.partner:0
-#: field:res.partner,subscription_ids:0
+#: model:ir.model.fields,field_description:publication.field_res_partner_subscription_ids
+#: model:ir.model.fields,field_description:publication.field_res_users_subscription_ids
+#: model:ir.ui.view,arch_db:publication.res_partner_publication_form
+msgid "Subscription contract lines"
+msgstr ""
+
+#. module: publication
+#: model:ir.model.fields,field_description:publication.field_account_analytic_contract_line_publication
+#: model:ir.model.fields,field_description:publication.field_account_analytic_invoice_line_publication
+msgid "Subscription product line"
+msgstr ""
+
+#. module: publication
+#: model:ir.ui.view,arch_db:publication.res_partner_publication_form
+#: model:ir.ui.view,arch_db:publication.subscription_search
+#: model:ir.ui.view,arch_db:publication.subscription_tree
 msgid "Subscriptions"
-msgstr "Subscriptions"
+msgstr ""
 
 #. module: publication
-#: code:addons/publication/model/publication_publication.py:62
-#, python-format
-msgid "The publication's end date needs to be after the publication's start date"
-msgstr "The publication's end date needs to be after the publication's start date"
-
-#. module: publication
-#: code:addons/publication/model/publication_subscription.py:289
-#, python-format
-msgid "The subscriptions end date needs to be equal or before the publication's end date"
-msgstr "The subscriptions end date needs to be equal or before the publication's end date"
-
-#. module: publication
-#: code:addons/publication/model/publication_subscription.py:283
-#, python-format
-msgid "The subscriptions start date needs to be equal or after the publication's start date"
-msgstr "The subscriptions start date needs to be equal or after the publication's start date"
-
-#. module: publication
-#: code:addons/publication/model/publication_subscription.py:277
-#, python-format
-msgid "The subscriptions's end date needs to be after the subscriptions's start date"
-msgstr "The subscriptions's end date needs to be after the subscriptions's start date"
-
-#. module: publication
-#: selection:product.product,recurring_rule_type:0
+#: selection:product.template,publishing_frequency_type:0
 msgid "Week(s)"
-msgstr "Week(s)"
+msgstr ""
 
 #. module: publication
-#: selection:product.product,recurring_rule_type:0
+#: selection:product.template,publishing_frequency_type:0
 msgid "Year(s)"
-msgstr "Year(s)"
+msgstr ""
 
 #. module: publication
-#: model:ir.model,name:publication.model_publication_publication
-msgid "publication.publication"
-msgstr "publication.publication"
+#: model:ir.model,name:publication.model_account_analytic_invoice_line
+msgid "account.analytic.invoice.line"
+msgstr ""
 
 #. module: publication
-#: model:ir.model,name:publication.model_publication_subscription
-msgid "publication.subscription"
-msgstr "publication.subscription"
+#: model:ir.model,name:publication.model_distribution_list
+msgid "distribution.list"
+msgstr ""
 
