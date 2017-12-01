@@ -74,7 +74,7 @@ class DistributionList(models.Model):
         string='Publication',
         domain=[('publication', '=', True)],
         required=True)
-    distribution_type = fields.Boolean(
+    distribution_type = fields.Selection(
         string='Type of publication',
         related='product_id.distribution_type',
         store=True)
