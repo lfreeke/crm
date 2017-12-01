@@ -140,7 +140,7 @@ class DistributionList(models.Model):
         partner_domain = [('id', 'in', valid_partners)]
         return {'domain': {'contract_partner_id': partner_domain}}
 
-    @api.constrains('available_count')
+    @api.constrains('product_id', 'contract_partner_id', 'copies')
     @api.multi
     def _limit_count(self):
         """Limit number of copies send to amount set in contract lines."""
