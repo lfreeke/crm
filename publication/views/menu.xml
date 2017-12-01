@@ -26,6 +26,7 @@
         <field name="res_model">product.template</field>
         <field name="name">Publications</field>
         <field name="domain">[('publication','=',True)]</field>
+        <field name="context">{'default_publication': True}</field>
     </record>
 
     <menuitem
