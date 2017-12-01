@@ -190,7 +190,7 @@ msgid "Publications received"
 msgstr "Publicaties"
 
 #. module: publication
-#: model:ir.ui.view,arch_db:publication.res_partner_publication_form
+#: model:ir.ui.view,arch_db:publication.view_partner_form
 msgid "Publications to receive"
 msgstr "Publicaties"
 
@@ -242,7 +242,7 @@ msgstr "Abonnementen"
 #. module: publication
 #: model:ir.model.fields,field_description:publication.field_res_partner_subscription_ids
 #: model:ir.model.fields,field_description:publication.field_res_users_subscription_ids
-#: model:ir.ui.view,arch_db:publication.res_partner_publication_form
+#: model:ir.ui.view,arch_db:publication.view_partner_form
 msgid "Subscription contract lines"
 msgstr "Abonnementen"
 
@@ -253,7 +253,7 @@ msgid "Subscription product line"
 msgstr "Product voor publicatie"
 
 #. module: publication
-#: model:ir.ui.view,arch_db:publication.res_partner_publication_form
+#: model:ir.ui.view,arch_db:publication.view_partner_form
 #: model:ir.ui.view,arch_db:publication.subscription_search
 #: model:ir.ui.view,arch_db:publication.subscription_tree
 msgid "Subscriptions"
