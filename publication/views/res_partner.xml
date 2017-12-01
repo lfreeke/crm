@@ -2,7 +2,7 @@
 <odoo>
 
     <record
-        id="res_partner_publication_form"
+        id="view_partner_form"
         model="ir.ui.view">
         <field name="name">res.partner.publication.form</field>
         <field name="model">res.partner</field>

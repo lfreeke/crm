@@ -32,7 +32,6 @@ msgstr "Met wat voor frequentie de publicatie uitkomt"
 #. module: publication
 #: model:ir.model.fields,field_description:publication.field_distribution_list_contract_partner_id
 #: model:ir.ui.view,arch_db:publication.subscription_search
-#, fuzzy
 msgid "Contract Partner"
 msgstr "Contract informatie"
 
@@ -69,14 +68,12 @@ msgstr "Weergave naam"
 #. module: publication
 #: model:ir.model.fields,field_description:publication.field_product_product_distribution_type
 #: model:ir.model.fields,field_description:publication.field_product_template_distribution_type
-#, fuzzy
 msgid "Distribution"
 msgstr "Voorkeur voor email of drukwerk"
 
 #. module: publication
 #: model:ir.actions.act_window,name:publication.action_distribution_list
 #: model:ir.ui.menu,name:publication.menu_distribution_list
-#, fuzzy
 msgid "Distribution List"
 msgstr "Voorkeur voor email of drukwerk"
 
@@ -147,7 +144,6 @@ msgstr "Aantal nog beschikbaar"
 
 #. module: publication
 #: model:ir.model.fields,field_description:publication.field_distribution_list_contract_count
-#, fuzzy
 msgid "Number to distribute"
 msgstr "Aantal exemplaren"
 
@@ -165,14 +161,12 @@ msgstr "Drukwerk"
 
 #. module: publication
 #: model:ir.model,name:publication.model_product_template
-#, fuzzy
 msgid "Product Template"
 msgstr "Product"
 
 #. module: publication
 #: model:ir.model.fields,field_description:publication.field_product_product_publication
 #: model:ir.model.fields,field_description:publication.field_product_template_publication
-#, fuzzy
 msgid "Product is a publication?"
 msgstr "publication.publication"
 
@@ -192,13 +186,11 @@ msgstr "Publicaties"
 #. module: publication
 #: model:ir.model.fields,field_description:publication.field_res_partner_distribution_list_ids
 #: model:ir.model.fields,field_description:publication.field_res_users_distribution_list_ids
-#, fuzzy
 msgid "Publications received"
 msgstr "Publicaties"
 
 #. module: publication
 #: model:ir.ui.view,arch_db:publication.res_partner_publication_form
-#, fuzzy
 msgid "Publications to receive"
 msgstr "Publicaties"
 
@@ -211,7 +203,6 @@ msgstr "Verschijnt iedere"
 #. module: publication
 #: model:ir.model.fields,help:publication.field_product_product_publishing_frequency_interval
 #: model:ir.model.fields,help:publication.field_product_template_publishing_frequency_interval
-#, fuzzy
 msgid "Publish every (Days/Week/Month/Quarter/Year)"
 msgstr "Herhaal elke (dagen/weken/maanden/jaren)"
 
@@ -229,13 +220,11 @@ msgstr "Kwartaal"
 #. module: publication
 #: model:ir.model.fields,field_description:publication.field_distribution_list_partner_id
 #: model:ir.ui.view,arch_db:publication.subscription_search
-#, fuzzy
 msgid "Receiving Partner"
 msgstr "Ontvangende relatie"
 
 #. module: publication
 #: model:ir.model.fields,field_description:publication.field_distribution_list_display_address
-#, fuzzy
 msgid "Receiving address"
 msgstr "Verzendadres"
 
@@ -247,7 +236,6 @@ msgstr "Verplicht indien product een publicatie is"
 
 #. module: publication
 #: model:ir.ui.view,arch_db:publication.subscription_form
-#, fuzzy
 msgid "Subscription Address"
 msgstr "Abonnementen"
 
@@ -255,14 +243,12 @@ msgstr "Abonnementen"
 #: model:ir.model.fields,field_description:publication.field_res_partner_subscription_ids
 #: model:ir.model.fields,field_description:publication.field_res_users_subscription_ids
 #: model:ir.ui.view,arch_db:publication.res_partner_publication_form
-#, fuzzy
 msgid "Subscription contract lines"
 msgstr "Abonnementen"
 
 #. module: publication
 #: model:ir.model.fields,field_description:publication.field_account_analytic_contract_line_publication
 #: model:ir.model.fields,field_description:publication.field_account_analytic_invoice_line_publication
-#, fuzzy
 msgid "Subscription product line"
 msgstr "Product voor publicatie"
 
@@ -292,6 +278,16 @@ msgstr ""
 #: model:ir.model,name:publication.model_distribution_list
 msgid "distribution.list"
 msgstr ""
+
+#. module: publication
+#: model:ir.ui.view,arch_db:publication.view_partner_form
+msgid "Subscription contract lines"
+msgstr "Contractregels voor abonnementen"
+
+#. module: publication
+#: model:ir.ui.view,arch_db:publication.view_partner_form
+msgid "Publications to receive"
+msgstr "Te ontvangen publicaties"
 
 #~ msgid "Can be send by email"
 #~ msgstr "Kan per email worden verspreid"
