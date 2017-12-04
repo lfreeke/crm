@@ -168,7 +168,7 @@ msgstr "Product"
 #: model:ir.model.fields,field_description:publication.field_product_product_publication
 #: model:ir.model.fields,field_description:publication.field_product_template_publication
 msgid "Product is a publication?"
-msgstr "publication.publication"
+msgstr "Product is een publicatie"
 
 #. module: publication
 #: model:ir.model.fields,field_description:publication.field_distribution_list_product_id
@@ -192,7 +192,7 @@ msgstr "Publicaties"
 #. module: publication
 #: model:ir.ui.view,arch_db:publication.view_partner_form
 msgid "Publications to receive"
-msgstr "Publicaties"
+msgstr "Publicaties te ontvangen"
 
 #. module: publication
 #: model:ir.model.fields,field_description:publication.field_product_product_publishing_frequency_interval
@@ -237,7 +237,7 @@ msgstr "Verplicht indien product een publicatie is"
 #. module: publication
 #: model:ir.ui.view,arch_db:publication.subscription_form
 msgid "Subscription Address"
-msgstr "Abonnementen"
+msgstr "Verzendadres"
 
 #. module: publication
 #: model:ir.model.fields,field_description:publication.field_res_partner_subscription_ids
@@ -250,7 +250,7 @@ msgstr "Abonnementen"
 #: model:ir.model.fields,field_description:publication.field_account_analytic_contract_line_publication
 #: model:ir.model.fields,field_description:publication.field_account_analytic_invoice_line_publication
 msgid "Subscription product line"
-msgstr "Product voor publicatie"
+msgstr "Contractregel voor abonnement"
 
 #. module: publication
 #: model:ir.ui.view,arch_db:publication.view_partner_form
