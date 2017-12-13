@@ -51,6 +51,23 @@ class DistributionList(models.Model):
                 this.active = False
 
     @api.multi
+    def _search_active(self, operator, value):
+        """Return domain depend on search for active or inactive."""
+        assert operator == '='
+        today = fields.Date.today()
+        if value:
+            # Means we want active records
+            return [
+                '|', ('date_start', '=', False),
+                ('date_start', '<=', today),
+                '|', ('date_end', '<=', False),
+                ('date_end', '>', today)]
+        # Inactive records:
+        return [
+            '|', ('date_start', '>', today),
+            ('date_end', '<=', today)]
+
+    @api.multi
     @api.depends('product_id', 'contract_partner_id', 'copies')
     def _compute_counts(self):
         """Used to check how many addresses can still be added."""
@@ -95,7 +112,10 @@ class DistributionList(models.Model):
     date_end = fields.Date(
         string='Date end',
         help="End date is exclusive.")
-    active = fields.Boolean(string='Active', compute='_compute_active')
+    active = fields.Boolean(
+        string='Active',
+        compute='_compute_active',
+        search='_search_active')
     copies = fields.Integer(string='Number of copies', default=1)
     name = fields.Char(
         compute='_compute_name_address',
