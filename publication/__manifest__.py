@@ -10,6 +10,7 @@
     'license': 'AGPL-3',
     'summary': 'Maintain electronic or print publications for your relations.',
     'depends': [
+        'base_active_date',
         'partner_noncommercial',
         'contract_line_extended',
         'web_m2x_options',

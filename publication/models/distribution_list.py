@@ -22,6 +22,7 @@ SELECT COALESCE(SUM(copies), 0) as copies
 
 class DistributionList(models.Model):
     _name = 'distribution.list'
+    _inherit = ['active.date']
     _order = 'name'
 
     @api.depends('product_id', 'partner_id')
@@ -38,34 +39,6 @@ class DistributionList(models.Model):
                 this.display_address = this.partner_id.email
             else:
                 this.display_address = this.partner_id.contact_address
-
-    @api.multi
-    def _compute_active(self):
-        """Apply date logic to determine if version is current"""
-        today = fields.Date.today()
-        for this in self:
-            if ((not this.date_start or this.date_start <= today) and
-                    (not this.date_end or this.date_end >= today)):
-                this.active = True
-            else:
-                this.active = False
-
-    @api.multi
-    def _search_active(self, operator, value):
-        """Return domain depend on search for active or inactive."""
-        assert operator == '='
-        today = fields.Date.today()
-        if value:
-            # Means we want active records
-            return [
-                '|', ('date_start', '=', False),
-                ('date_start', '<=', today),
-                '|', ('date_end', '<=', False),
-                ('date_end', '>', today)]
-        # Inactive records:
-        return [
-            '|', ('date_start', '>', today),
-            ('date_end', '<=', today)]
 
     @api.multi
     @api.depends('product_id', 'contract_partner_id', 'copies')
@@ -105,17 +78,15 @@ class DistributionList(models.Model):
         comodel_name='res.partner',
         string='Contract Partner',
         required=True)
-    date_start = fields.Date(
+    # override active_date_start and _end with extra atributed
+    active_date_start = fields.Date(
         string='Date start',
         default=fields.Date.today(),
-        required=True)
+        required=True,
+        old_name='date_start')
     date_end = fields.Date(
         string='Date end',
-        help="End date is exclusive.")
-    active = fields.Boolean(
-        string='Active',
-        compute='_compute_active',
-        search='_search_active')
+        old_name='date_end')
     copies = fields.Integer(string='Number of copies', default=1)
     name = fields.Char(
         compute='_compute_name_address',
