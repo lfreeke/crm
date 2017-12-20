@@ -80,8 +80,8 @@
                             name="partner_id"
                             options="{'create': false, 'create_edit': false}"
                             />
-                        <field name="date_start" />
-                        <field name="date_end" />
+                        <field name="active_date_start" />
+                        <field name="active_date_end" />
                         <field name="distribution_type" readonly="1" />
                         <field
                             name="copies"

@@ -58,8 +58,8 @@
                             <tree>
                                 <field name="product_id" />
                                 <field name="copies" />
-                                <field name="date_start" />
-                                <field name="date_end" />
+                                <field name="active_date_start" />
+                                <field name="active_date_end" />
                                 <field name="contract_partner_id" />
                             </tree>
                         </field>

@@ -46,12 +46,12 @@ msgid "Created on"
 msgstr "Aangemaakt op"
 
 #. module: publication
-#: model:ir.model.fields,field_description:publication.field_distribution_list_date_end
+#: model:ir.model.fields,field_description:publication.field_distribution_list_active_date_end
 msgid "Date end"
 msgstr "Einddatum"
 
 #. module: publication
-#: model:ir.model.fields,field_description:publication.field_distribution_list_date_start
+#: model:ir.model.fields,field_description:publication.field_distribution_list_active_date_start
 msgid "Date start"
 msgstr "Startdatum"
 
@@ -83,7 +83,7 @@ msgid "Electronic"
 msgstr "Elektronisch"
 
 #. module: publication
-#: model:ir.model.fields,help:publication.field_distribution_list_date_end
+#: model:ir.model.fields,help:publication.field_distribution_list_active_date_end
 msgid "End date is exclusive."
 msgstr "Einddatum it tot datum"
 
