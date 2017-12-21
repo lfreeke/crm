@@ -78,15 +78,11 @@ class DistributionList(models.Model):
         comodel_name='res.partner',
         string='Contract Partner',
         required=True)
-    # override active_date_start and _end with extra atributed
+    # override active_date_start with extra atributed
     active_date_start = fields.Date(
         string='Date start',
         default=fields.Date.today(),
-        required=True,
-        old_name='date_start')
-    date_end = fields.Date(
-        string='Date end',
-        old_name='date_end')
+        required=True)
     copies = fields.Integer(string='Number of copies', default=1)
     name = fields.Char(
         compute='_compute_name_address',
