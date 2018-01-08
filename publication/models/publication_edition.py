@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # Copyright 2018 Therp BV <https://therp.nl>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+import re
+
 from odoo import api, fields, models
 
 
@@ -10,7 +12,10 @@ class PublicationEdition(models.Model):
 
     @api.depends('name')
     def _pdf_name_get(self):
-        self.pdf_name = '%s.pdf' % self.name
+        # Might be more subtly done with unicodedata and sluggify, but this
+        # will cover 99.9% of cases
+        self.pdf_name = (
+            '%s.pdf' % re.sub('[^A-Za-z0-9]+', '-', self.name).lower())
 
     product_id = fields.Many2one(
         comodel_name='product.product',
