@@ -56,7 +56,8 @@
                             />
                         <field name="name" />
                         <field name="date_published" />
-                        <field name="pdf" />
+                        <field name="pdf_name" invisible="1" />
+                        <field name="pdf" filename="pdf_name" />
                     </group>
                 </group>
             </form>
