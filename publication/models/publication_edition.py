@@ -14,6 +14,9 @@ class PublicationEdition(models.Model):
     def _pdf_name_get(self):
         # Might be more subtly done with unicodedata and sluggify, but this
         # will cover 99.9% of cases
+        if not self.name:
+            self.pdf_name = ''
+            return
         self.pdf_name = (
             '%s.pdf' % re.sub('[^A-Za-z0-9]+', '-', self.name).lower())
 
