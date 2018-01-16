@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2014-2017 Therp BV <https://therp.nl>.
+# Copyright 2014-2018 Therp BV <https://therp.nl>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
@@ -134,4 +134,8 @@ class DistributionList(models.Model):
         for this in self:
             if self.available_count < 0:
                 raise ValidationError(_(
-                    "Number of copies sent can not exceed contracted number"))
+                    "Number of copies sent can not exceed contracted number"
+                    "%d for partner %s and product %s" % (
+                        self.contract_count,
+                        self.contract_partner_id.display_name,
+                        self.product_id.display_name)))
