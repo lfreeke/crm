@@ -8,6 +8,7 @@
             <search string="Subscriptions">
                 <field name="product_id" />
                 <field name="partner_id" />
+                <field name="contract_partner_id" />
                 <group expand="0" string="Group By...">
                     <filter
                         string="Publication"
