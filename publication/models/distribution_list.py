@@ -25,6 +25,21 @@ class DistributionList(models.Model):
     _inherit = ['active.date']
     _order = 'name'
 
+    @api.model
+    def get_product_contract_count(self, product_id, contract_partner_id):
+        self.env.cr.execute(
+            SQL_CONTRACT_COUNT,
+            (product_id, contract_partner_id))
+        return self.env.cr.fetchone()[0]
+
+    @api.model
+    def get_product_contract_assigned_count(
+            self, product_id, contract_partner_id):
+        self.env.cr.execute(
+            SQL_ASSIGNED_COUNT,
+            (product_id, contract_partner_id))
+        return self.env.cr.fetchone()[0]
+
     @api.depends('product_id', 'partner_id')
     def _compute_name_address(self):
         """Create subscription name from publication and partner."""
@@ -44,18 +59,13 @@ class DistributionList(models.Model):
     @api.depends('product_id', 'contract_partner_id', 'copies')
     def _compute_counts(self):
         """Used to check how many addresses can still be added."""
-        cr = self.env.cr
         for this in self:
             if not self.product_id or not self.contract_partner_id:
                 continue
-            cr.execute(
-                SQL_CONTRACT_COUNT,
-                (this.product_id.id, this.contract_partner_id.id))
-            contract_count = cr.fetchone()[0]
-            cr.execute(
-                SQL_ASSIGNED_COUNT,
-                (this.product_id.id, this.contract_partner_id.id))
-            assigned_count = cr.fetchone()[0]
+            contract_count = self.get_product_contract_count(
+                this.product_id.id, this.contract_partner_id.id)
+            assigned_count = self.get_product_contract_assigned_count(
+                this.product_id.id, this.contract_partner_id.id)
             available_count = contract_count - assigned_count
             this.contract_count = contract_count
             this.assigned_count = assigned_count
