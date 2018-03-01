@@ -124,11 +124,11 @@ class TestPublication(common.SavepointCase):
         partner_joris = self.partner_joris
         partner_corneel = self.partner_corneel
         product_count = distribution_model.get_product_contract_count(
-            partner_jan.id, product_newsletter.id)
+            product_newsletter.id, partner_jan.id)
         self.assertEqual(product_count, 40)
         assigned_count = \
             distribution_model.get_product_contract_assigned_count(
-                partner_jan.id, product_newsletter.id)
+                product_newsletter.id, partner_jan.id)
         self.assertEqual(assigned_count, 0)
         subscription01 = distribution_model.create({
             'product_id': product_newsletter.id,
