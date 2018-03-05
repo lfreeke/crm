@@ -156,14 +156,21 @@ class DistributionList(models.Model):
         It should be possible to make a constrains method of this function,
         but for inexplicable reasons this does not work.
         """
-        # Manually compute needed fields...
-        self._compute_counts()
         for this in self:
-            if this.available_count < 0:
+            # Do not use counts from 'this' as they probably have not
+            # been updated yet.
+            product = this.product_id
+            contract_partner = this.contract_partner_id
+            contract_count = self.get_product_contract_count(
+                product.id, contract_partner.id)
+            assigned_count = self.get_product_contract_assigned_count(
+                product.id, contract_partner.id)
+            available_count = contract_count - assigned_count
+            if available_count < 0:
                 raise ValidationError(_(
                     "Number of copies sent %d can not exceed contracted"
                     " number %d for partner %s and product %s" % (
-                        this.assigned_count,
-                        this.contract_count,
-                        this.contract_partner_id.display_name,
-                        this.product_id.display_name)))
+                        assigned_count,
+                        contract_count,
+                        contract_partner.display_name,
+                        product.display_name)))
