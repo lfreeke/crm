@@ -137,10 +137,25 @@ class DistributionList(models.Model):
         partner_domain = [('id', 'in', valid_partners)]
         return {'domain': {'contract_partner_id': partner_domain}}
 
+    @api.model
+    def create(self, vals):
+        result = super(DistributionList, self).create(vals)
+        result._limit_count()
+        return result
+
     @api.multi
-    @api.constrains('product_id', 'contract_partner_id', 'copies')
+    def write(self, vals):
+        result = super(DistributionList, self).write(vals)
+        self._limit_count()
+        return result
+
+    @api.multi
     def _limit_count(self):
-        """Limit number of copies send to amount set in contract lines."""
+        """Limit number of copies send to amount set in contract lines.
+
+        It should be possible to make a constrains method of this function,
+        but for inexplicable reasons this does not work.
+        """
         # Manually compute needed fields...
         self._compute_counts()
         for this in self:
